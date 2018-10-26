@@ -1,5 +1,4 @@
-#name-top-box {
-    color: #1b1b1d;
+/* #name-top-box {
     width: 300px;
     height: 52px;
     border: 1px solid black;
@@ -7,23 +6,27 @@
     background-color: #1b1b1d;
     margin: 0px 0px;
     box-shadow: 0px 0px  3px 3px black;
-}
+} */
 
-#text-line {
+/* #text-line {
     vertical-align: middle;
     display: table-cell;
 }
 
+.closed {
+    color: #1b1b1d;
+    background-color: #1b1b1d
+}
+
+
 .buy {
     text-align: left;
-    /* border-bottom: 4px solid;
-    padding-bottom: 11px; */
     margin-right: 10px;
     margin-left: -8px;
     color: #21ce99;
-} 
+}  */
 
- .sell {
+ /* .sell {
     text-align: right;
     color: white
 }
@@ -33,4 +36,42 @@ p {
     font-family: Arial, Helvetica, sans-serif;
     display: inline;
 }
+ */
 
+
+ #top-bar {
+     display: flex;
+     flex-direction: row;
+     justify-content: space-between;
+     border: 1px solid rgb(224, 224, 224);
+     box-shadow: 1px 1px 10px 1px whitesmoke;
+     height: 47px;
+     width: 228px;
+     align-items: center;
+     font-family: "DIN Pro", -apple-system, BlinkMacSystemFont, sans-serif;
+     font-weight: 600;
+ }
+
+#buy {
+    margin-left: 12px;
+    margin-top: 4px;
+    font-size: 16px;
+}   
+
+#threedots {
+    margin-right: 10px;
+}
+
+.dot {
+    height: 4px;
+    width: 4px;
+    border-radius: 50%;
+    background: black;
+    display: inline-block;
+    margin-right: 3px;
+    margin-bottom: 3px;
+}
+
+#threedots:hover .dot {
+    background: orangered;
+}
