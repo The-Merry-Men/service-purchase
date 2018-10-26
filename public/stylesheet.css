@@ -1,0 +1,36 @@
+#name-top-box {
+    color: #1b1b1d;
+    width: 300px;
+    height: 52px;
+    border: 1px solid black;
+    padding: 4px 24px;
+    background-color: #1b1b1d;
+    margin: 0px 0px;
+    box-shadow: 0px 0px  3px 3px black;
+}
+
+#text-line {
+    vertical-align: middle;
+    display: table-cell;
+}
+
+.buy {
+    text-align: left;
+    /* border-bottom: 4px solid;
+    padding-bottom: 11px; */
+    margin-right: 10px;
+    margin-left: -8px;
+    color: #21ce99;
+} 
+
+ .sell {
+    text-align: right;
+    color: white
+}
+
+p {
+    font-size: 13;
+    font-family: Arial, Helvetica, sans-serif;
+    display: inline;
+}
+
