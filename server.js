@@ -6,7 +6,5 @@ app.listen(port, () => {
     console.log('server up and running')
 })
 
-//what is this for??????????????
 app.use('/client', express.static('client'))
-
 app.use(express.static('public'))
