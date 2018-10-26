@@ -1,0 +1,24 @@
+
+```{r}
+
+starting_prices = seq(5:300)
+yearly_stds = seq(0.1, 0.5, 0.05)
+
+
+
+generateData = function(n, yearly_return, yearly_std, starting_price) {
+  price = rep(NA, n)
+  price[1] = starting_price
+  for (i in 2:n) {
+    noise = rnorm(1,0,yearly_std)
+    prev = price[i - 1]
+    price[i] = prev + prev * (yearly_return/n + noise/sqrt(n))
+  }
+  return (price)
+}
+
+data = generateData(100, 0.25, .50, 100)
+data
+plot(data, type = 'l')
+
+```
