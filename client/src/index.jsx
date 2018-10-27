@@ -1,7 +1,7 @@
+
 import React from 'react'
 import ReactDOM from 'react-dom'
-import NameTopBox from './components/topbaropen.jsx'
+//import NameTopBox from './components/topbaropen.jsx'
+import MiddleBox from './components/middlebaropen.jsx'
 
-ReactDOM.render(<NameTopBox ticker='AAPL'/>, document.getElementById('purchase-box'))
-
-
+ReactDOM.render(<MiddleBox />, document.getElementById('purchase-box'))

@@ -1,43 +1,6 @@
-/* #name-top-box {
-    width: 300px;
-    height: 52px;
-    border: 1px solid black;
-    padding: 4px 24px;
-    background-color: #1b1b1d;
-    margin: 0px 0px;
-    box-shadow: 0px 0px  3px 3px black;
-} */
-
-/* #text-line {
-    vertical-align: middle;
-    display: table-cell;
+body {
+    font-family: "DIN Pro", -apple-system, BlinkMacSystemFont, sans-serif;
 }
-
-.closed {
-    color: #1b1b1d;
-    background-color: #1b1b1d
-}
-
-
-.buy {
-    text-align: left;
-    margin-right: 10px;
-    margin-left: -8px;
-    color: #21ce99;
-}  */
-
- /* .sell {
-    text-align: right;
-    color: white
-}
-
-p {
-    font-size: 13;
-    font-family: Arial, Helvetica, sans-serif;
-    display: inline;
-}
- */
-
 
  #top-bar {
      display: flex;
@@ -48,7 +11,6 @@ p {
      height: 47px;
      width: 228px;
      align-items: center;
-     font-family: "DIN Pro", -apple-system, BlinkMacSystemFont, sans-serif;
      font-weight: 600;
  }
 
@@ -74,4 +36,35 @@ p {
 
 #threedots:hover .dot {
     background: orangered;
+}
+
+#middle-bar {
+    border: 1px solid black;
+    width: 228px;
+}
+
+.share-line {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+
+}
+
+#share-text {
+    margin-right: 5px;
+    font-size: 13px;
+    font-weight: 400;
+    padding-left: 10px;
+    padding-right: 20px;
+}
+
+#share-input {
+    text-align: right;
+    width: 40px;
+    border:1px solid black;
+    border-radius: 2px;
+    padding-right: 5px;
+    margin-right: 20px;
+    margin-bottom: 4px;
 }
