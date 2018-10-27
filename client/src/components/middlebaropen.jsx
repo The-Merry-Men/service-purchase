@@ -22,3 +22,4 @@ class MiddleBar extends React.Component {
 }
 
 export default MiddleBar;
+
