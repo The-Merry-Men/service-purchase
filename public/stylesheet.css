@@ -38,7 +38,7 @@ p {
 }
  */
 
-
+/* 
  #top-bar {
      display: flex;
      flex-direction: row;
@@ -74,4 +74,4 @@ p {
 
 #threedots:hover .dot {
     background: orangered;
-}
+} */
