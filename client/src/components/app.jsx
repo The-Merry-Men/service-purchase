@@ -9,8 +9,8 @@ class App extends React.Component {
     render() {
         return (
             <div>
-            <TopBar up={false} open={false}/>
-            <MiddleBar up={true} open={false}/>
+            <TopBar up={true} open={true}/>
+            <MiddleBar up={true} open={true} price={214.88}/>
             </div>
         )
     }

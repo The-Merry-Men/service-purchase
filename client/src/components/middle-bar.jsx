@@ -34,19 +34,19 @@ const ShareText = styled.div `
 const ShareInput = styled.input `
     text-align: right;
     width: 40px;
-    border:1px solid black;
-    background: black;
-    color: #8c8c8e; 
+    border:1px solid ${props => props.open ? "#fafafa" : "black"} ;
+    background: ${props => props.open ? "#fafafa" : "black"};
+    color: ${props => props.open ? "#8c8c8e" : "#8c8c8e"}; 
     border-radius: 2px;
     padding-right: 5px;
     margin-right: 20px;
     margin-bottom: 4px;
     ${ShareLine}: hover & {
-        border-color: #8c8c8e;
+        border-color: ${props => props.open ? "#cbcbcd" : "#8c8c8e"};
     }
 `
 const MarketPriceText = styled(ShareText) `
-    color: #f45531;
+    color: ${props => props.up ? "#21ce99" : "#f45531"}; 
 `
 const MarketPrice = styled(ShareText) `
 `
@@ -59,14 +59,14 @@ class MiddleBar extends React.Component {
         return (
             <MiddleBarWrapper open={this.props.open}>
                 <ShareLine>
-                    <ShareText>Shares</ShareText>
+                    <ShareText open={this.props.open}>Shares</ShareText>
                     <form>
-                        <ShareInput type='text' value='0'/>
+                        <ShareInput open={this.props.open} type='text' value='0'/>
                     </form>
                 </ShareLine>
                 <ShareLine>
-                <MarketPriceText>Market Price</MarketPriceText>
-                <MarketPrice>$999.99</MarketPrice>
+                <MarketPriceText up={this.props.up} >Market Price</MarketPriceText>
+                <MarketPrice open={this.props.open}>${this.props.price}</MarketPrice>
                 </ShareLine>
             </MiddleBarWrapper>
         )
