@@ -21,6 +21,11 @@ const ShareLine = styled.div `
     align-items: center;
     justify-content: space-between;
 `
+
+const CenterLine = styled(ShareLine) `
+    justify-content: center;
+`
+
 const ShareText = styled(Text13Div) `
     margin-right: 5px;
     padding-left: 10px;
@@ -50,6 +55,27 @@ const MarketPriceText = styled(ShareText) `
     color: ${props => props.up ? "#21ce99" : "#f45531"};
     font-weight: 600; 
 `
+//needs css changes
+const ExecuteCheck = styled.button `
+    background-color: #f45531;
+    border: none;
+    padding: 8px;
+    border-radius: 4px;
+    display: inline-block;
+`
+//needs css changes
+const ExecuteMessage = styled(Text13Div) `
+    color: #cbcbcd;
+    margin-left: 10px;
+`
+
+const ReviewButton = styled(ExecuteCheck) `
+    color: black;
+    padding: 10px 52px;
+    &:hover {
+        background-color: #ff6340;
+    }
+`
 
 class MiddleBar extends React.Component {
     constructor(props) {
@@ -65,9 +91,20 @@ class MiddleBar extends React.Component {
                     </form>
                 </ShareLine>
                 <ShareLine>
-                <MarketPriceText up={this.props.up} >Market Price</MarketPriceText>
-                <PriceText open={this.props.open}>${this.props.price}</PriceText>
+                    <MarketPriceText up={this.props.up} >Market Price</MarketPriceText>
+                    <PriceText open={this.props.open}>${this.props.price}</PriceText>
                 </ShareLine>
+                <ShareLine>
+                    <PriceText open={this.props.open}>Estimated Cost</PriceText>
+                    <PriceText open={this.props.open}>$0.00</PriceText>
+                </ShareLine>
+                <ShareLine>
+                    <ExecuteCheck></ExecuteCheck>
+                    <ExecuteMessage>This order should only execute during normal market hours.</ExecuteMessage>
+                </ShareLine>
+                <CenterLine>
+                    <ReviewButton>Review Order</ReviewButton>
+                </CenterLine>
             </MiddleBarWrapper>
         )
     }
