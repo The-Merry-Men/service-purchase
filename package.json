@@ -27,6 +27,8 @@
     "nodemon": "^1.18.4",
     "react": "^16.6.0",
     "react-dom": "^16.6.0",
+    "react-redux": "^5.1.0",
+    "redux": "^4.0.1",
     "styled-components": "^4.0.2"
   },
   "devDependencies": {
