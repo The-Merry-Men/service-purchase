@@ -87,7 +87,7 @@ class MiddleBar extends React.Component {
                 <ShareLine>
                     <ShareText open={this.props.open}>Shares</ShareText>
                     <form>
-                        <ShareInput open={this.props.open} type='text' value='0'/>
+                        <ShareInput open={this.props.open} type='text' placeholder='0'/>
                     </form>
                 </ShareLine>
                 <ShareLine>
