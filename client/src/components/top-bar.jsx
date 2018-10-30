@@ -39,7 +39,7 @@ const Dot = styled.span `
 
 //props.ticker //props.open
 //is there a better way than just passing this.props.open to everything? redux
-class NameTopBox extends React.Component {
+class TopBar extends React.Component {
     constructor(props) {
         super(props)
     }
@@ -56,5 +56,5 @@ class NameTopBox extends React.Component {
         )   
     }
 }
+export default TopBar;
 
-export default NameTopBox;
