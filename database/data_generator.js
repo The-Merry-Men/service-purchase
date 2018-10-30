@@ -37,7 +37,10 @@ function generateData() {
   }
 }
 
+// generate a single user's data
+const queryStringUser = 'INSERT INTO users (id, balance, authorized_user) VALUES (?, ?, ?)';
+connection.query(queryStringUser, [1, 10000, 1]);
+
 generateData();
 connection.end();
 
-export default connection;
