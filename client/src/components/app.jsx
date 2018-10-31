@@ -9,7 +9,7 @@ class App extends React.Component {
         super(props)
         this.state = {
             up: false,
-            open: false,
+            open: true,
             balance: 1000,
             price: '214.19',
             error: false
@@ -17,11 +17,7 @@ class App extends React.Component {
     }
 
     updateState(newProp) {
-      var x = Object.assign({}, this.state, newProp)
-      console.log(x)
-      //the object given to state is correct
       this.setState(Object.assign({}, this.state, newProp))
-      console.log(this.state)
     }
 
     // componentDidMount() {
@@ -38,7 +34,7 @@ class App extends React.Component {
   render() {
     return (
       <div>
-      <TopBar up={this.state.up} open={this.state.open}/>
+      <TopBar up={this.state.up} open={this.state.open} error={this.state.error}/>
       <MiddleBar up={this.state.up} open={this.state.open} price={this.state.price} error={this.state.error} updateState={this.updateState.bind(this)} balance={this.state.balance}/>
       <ReviewBar up={this.state.up} open={this.state.open} error={this.state.error} />
       <BottomBar up={this.state.up} open={this.state.open} balance={this.state.balance}/>

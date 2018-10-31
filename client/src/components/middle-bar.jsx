@@ -91,17 +91,21 @@ class MiddleBar extends React.Component {
       })
     }
 
-    ReviewClickHandler() {
+    reviewClickHandler() {
       console.log(this.props.price * this.state.shares, this.props.balance)
       if (this.props.balance < this.props.price * this.state.shares) {
-        console.log('if hit')
         this.props.updateState({error: true})
       }
       //else go to purchase page?
     }
 
+    backClickHandler() {
+      console.log('back handler')
+      this.props.updateState({error: false})
+    }
+
     render() {
-      let button = !this.props.error ? <ReviewButton onClick={this.ReviewClickHandler.bind(this)}>Review Order</ReviewButton> : <ReviewButton>Back</ReviewButton>
+      let button = !this.props.error ? <ReviewButton onClick={this.reviewClickHandler.bind(this)}>Review Order</ReviewButton> : <ReviewButton onClick={this.backClickHandler.bind(this)}>Back</ReviewButton>
         return (
             <MiddleBarWrapper open={this.props.open}>
                 <ShareLine>
