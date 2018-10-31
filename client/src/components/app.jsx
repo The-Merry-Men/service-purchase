@@ -10,9 +10,18 @@ class App extends React.Component {
         this.state = {
             up: false,
             open: false,
-            balance: '0.00',
+            balance: 1000,
             price: '214.19',
+            error: true
         }
+    }
+
+    updateState(newProp) {
+      var x = Object.assign({}, this.state, newProp)
+      console.log(x)
+      //the object given to state is correct
+      this.setState(Object.assign({}, this.state, newProp))
+      console.log(this.state)
     }
 
     // componentDidMount() {
@@ -26,16 +35,16 @@ class App extends React.Component {
     //         .catch(err => {console.log(err)})
     // }
 
-    render() {
-        return (
-            <div>
-            <TopBar up={this.state.up} open={this.state.open}/>
-            <MiddleBar up={this.state.up} open={this.state.open} price={this.state.price}/>
-            <BottomBar up={this.state.up} open={this.state.open} balance={this.state.balance}/>
-            <ReviewBar up={this.state.up} open={this.state.open} />
-            </div>
-        )
-    }
+  render() {
+    return (
+      <div>
+      <TopBar up={this.state.up} open={this.state.open}/>
+      <MiddleBar up={this.state.up} open={this.state.open} price={this.state.price} error={this.state.error} updateState={this.updateState.bind(this)} balance={this.state.balance}/>
+      <ReviewBar up={this.state.up} open={this.state.open} error={this.state.error} />
+      <BottomBar up={this.state.up} open={this.state.open} balance={this.state.balance}/>
+      </div>
+    )
+  }
 }
 
 export default App;

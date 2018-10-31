@@ -22,33 +22,38 @@ const ErrorText = styled.div `
     color : ${props => props.open ? "black" : "white"};
 `
 const ErrorImg = styled.span `
-    height: 15px;
-    width: 15px;
+    height: 12px;
+    width: 12px;
     border-radius: 50%;
     background: white;
     color: black;
     display: inline-block;
-    
+    text-align: center;
+    font-size: 11px;
 `
 
-
-
-
 class ReviewBar extends React.Component {
-    constructor(props) {
-        super(props)
+  constructor(props) {
+    super(props)
+  }
+  
+  render() {
+    if (this.props.error) {
+      return (
+        <ReviewBarWrapper>
+            <LeftLine>
+                <ErrorImg><span>!</span></ErrorImg>
+                <ErrorText>Error</ErrorText>
+            </LeftLine>
+            <LeftLine>
+              <ErrorText>Please enter a valid number of shares.</ErrorText>
+            </LeftLine>
+        </ReviewBarWrapper>
+      )
+    } else {
+      return (null)
     }
-    render() {
-        return (
-            <ReviewBarWrapper>
-                <LeftLine>
-                    <ErrorImg><span>!</span></ErrorImg>
-                    <ErrorText>Error</ErrorText>
-                </LeftLine>
-            </ReviewBarWrapper>
-        )
-        
-    }
+  }
 }
 
 export default ReviewBar

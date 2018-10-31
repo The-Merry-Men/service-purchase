@@ -74,7 +74,7 @@ const ReviewButton = styled(ExecuteCheck) `
     padding: 10px 52px;
     &:hover {
         background-color: #ff6340;
-    }
+    };
 `
 
 class MiddleBar extends React.Component {
@@ -91,7 +91,20 @@ class MiddleBar extends React.Component {
       })
     }
 
+    // for review button
+    // i think state is updating but button is not rerendering on state change. maybe because its defined differently?
+    ReviewClickHandler() {
+      // if cost > balance set state error = true
+      // else ?
+      console.log(this.props.price * this.state.shares, this.props.balance)
+      if (this.props.balance < this.props.price * this.state.shares) {
+        console.log('if hit')
+        this.props.updateState({error: true})
+      }
+    }
+
     render() {
+      let button = this.props.error ? <ReviewButton onClick={this.ReviewClickHandler.bind(this)}>Review Order</ReviewButton> : <ReviewButton>Back</ReviewButton>
         return (
             <MiddleBarWrapper open={this.props.open}>
                 <ShareLine>
@@ -109,11 +122,11 @@ class MiddleBar extends React.Component {
                     <PriceText open={this.props.open}>{(this.props.price * this.state.shares).toFixed(2)}</PriceText>
                 </ShareLine>
                 <ShareLine>
-                    <ExecuteCheck></ExecuteCheck>
-                    <ExecuteMessage>This order should only execute during normal market hours.</ExecuteMessage>
+                  <ExecuteCheck></ExecuteCheck>
+                  <ExecuteMessage>This order should only execute during normal market hours.</ExecuteMessage>
                 </ShareLine>
                 <CenterLine>
-                    <ReviewButton>Review Order</ReviewButton>
+                  {button}
                 </CenterLine>
             </MiddleBarWrapper>
         )
