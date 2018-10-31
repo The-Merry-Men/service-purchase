@@ -1,22 +1,38 @@
 import React from 'react'
 import TopBar from './top-bar.jsx'
 import MiddleBar from './middle-bar.jsx';
-import BottomBar from './bottom-bar.jsx'
+import BottomBar from './bottom-bar.jsx';
+import ReviewBar from './review-bar.jsx';
 
 class App extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
             up: false,
-            open: false
+            open: false,
+            balance: '0.00',
+            price: '214.19',
         }
     }
+
+    // componentDidMount() {
+    //     const randomId = Math.ceil(Math.random() * 99);
+    //     fetch(`http://localhost:3001/companies/${randomId}`)
+    //         .then(res => res.json())
+    //         .then(res => this.setState({
+    //             // company info
+    //         }))
+    //         .then (()=>{})
+    //         .catch(err => {console.log(err)})
+    // }
+
     render() {
         return (
             <div>
             <TopBar up={this.state.up} open={this.state.open}/>
-            <MiddleBar up={this.state.up} open={this.state.open} price={214.88}/>
-            <BottomBar up={this.state.up} open={this.state.open} balance={0.00}/>
+            <MiddleBar up={this.state.up} open={this.state.open} price={this.state.price}/>
+            <BottomBar up={this.state.up} open={this.state.open} balance={this.state.balance}/>
+            <ReviewBar up={this.state.up} open={this.state.open} />
             </div>
         )
     }

@@ -46,7 +46,6 @@ app.get('/users/:id', (req, res) => {
   });
 });
 
-
 // subtract amount from balance of user table give id
 app.post('/users/:id/:amount', (req, res) => {
   const idParam = req.params.id;

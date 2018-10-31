@@ -80,13 +80,23 @@ const ReviewButton = styled(ExecuteCheck) `
 class MiddleBar extends React.Component {
     constructor(props) {
         super(props)
+        this.state = {
+          shares: 0
+        }
     }
+
+    updateShares(e) {
+      this.setState({
+        shares: e.target.value
+      })
+    }
+
     render() {
         return (
             <MiddleBarWrapper open={this.props.open}>
                 <ShareLine>
                     <ShareText open={this.props.open}>Shares</ShareText>
-                    <form>
+                    <form onChange={this.updateShares.bind(this)}>
                         <ShareInput open={this.props.open} type='text' placeholder='0'/>
                     </form>
                 </ShareLine>
@@ -96,7 +106,7 @@ class MiddleBar extends React.Component {
                 </ShareLine>
                 <ShareLine>
                     <PriceText open={this.props.open}>Estimated Cost</PriceText>
-                    <PriceText open={this.props.open}>$0.00</PriceText>
+                    <PriceText open={this.props.open}>{(this.props.price * this.state.shares).toFixed(2)}</PriceText>
                 </ShareLine>
                 <ShareLine>
                     <ExecuteCheck></ExecuteCheck>
@@ -109,6 +119,4 @@ class MiddleBar extends React.Component {
         )
     }
 }
-
 export default MiddleBar;
-

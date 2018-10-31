@@ -6,6 +6,7 @@ const Text13Div = styled.div `
     font-size: 13px;
     font-weight: 400;
     font-family: "DIN Pro", -apple-system, BlinkMacSystemFont, sans-serif;
+    color: white;
 `
 
 const BottomBarWrapper = styled.div `
