@@ -42,6 +42,7 @@ app.get('/users/:id', (req, res) => {
     if (err) {
       return console.log('error getting account balance from companies database');
     }
+    console.log('data sent from get req', data[0])
     res.send(data[0]);
   });
 });

@@ -77,24 +77,56 @@ const ReviewButton = styled(ExecuteCheck) `
     };
 `
 
+class ShareInputComp extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      clicked: false
+    }
+  }
+  render() {
+    return (
+      <ShareInput clicked={this.state.clicked} open={this.props.open} placeholder={0}/>
+    )
+  }
+}
+
+class ExecuteCheckComp extends React.Component {
+  constructor(props) {
+    super(props)
+  }
+  render() {
+    return (
+      <div>
+        <ExecuteCheck></ExecuteCheck>
+        <ExecuteMessage>This order should only execute during normal market hours.</ExecuteMessage>
+      </div>
+    )
+  }
+}
+
 class MiddleBar extends React.Component {
     constructor(props) {
         super(props)
-        this.state = {
-          shares: 0
-        }
+        // this.state = {
+        //   shares: 0
+        // }
     }
 
     updateShares(e) {
-      this.setState({
-        shares: e.target.value
-      })
+      this.props.updateState({shares: e.target.value})
+      // this.setState({
+      //   shares: e.target.value
+      // })
     }
 
+    // need to add all types of errors
     reviewClickHandler() {
-      console.log(this.props.price * this.state.shares, this.props.balance)
-      if (this.props.balance < this.props.price * this.state.shares) {
-        this.props.updateState({error: true})
+      if (this.props.shares < 0) {
+        return this.props.updateState({error: 'invalidNumber'})
+      } 
+      if (this.props.balance < this.props.price * this.props.shares) {
+        this.props.updateState({error: 'insufficientFunds'})
       }
       //else go to purchase page?
     }
@@ -105,13 +137,14 @@ class MiddleBar extends React.Component {
     }
 
     render() {
-      let button = !this.props.error ? <ReviewButton onClick={this.reviewClickHandler.bind(this)}>Review Order</ReviewButton> : <ReviewButton onClick={this.backClickHandler.bind(this)}>Back</ReviewButton>
+      let button = this.props.error === 'insufficientFunds'?  null : !this.props.error ? <ReviewButton onClick={this.reviewClickHandler.bind(this)}>Review Order</ReviewButton> : <ReviewButton onClick={this.backClickHandler.bind(this)}>Back</ReviewButton>
+      let executeCheckComp = this.props.open ? null : <ExecuteCheckComp />
         return (
             <MiddleBarWrapper open={this.props.open}>
                 <ShareLine>
                     <ShareText open={this.props.open}>Shares</ShareText>
                     <form onChange={this.updateShares.bind(this)}>
-                        <ShareInput open={this.props.open} type='text' placeholder='0'/>
+                        <ShareInputComp open={this.props.open} type='text' placeholder='0'/>
                     </form>
                 </ShareLine>
                 <ShareLine>
@@ -120,11 +153,10 @@ class MiddleBar extends React.Component {
                 </ShareLine>
                 <ShareLine>
                     <PriceText open={this.props.open}>Estimated Cost</PriceText>
-                    <PriceText open={this.props.open}>{(this.props.price * this.state.shares).toFixed(2)}</PriceText>
+                    <PriceText open={this.props.open}>{(this.props.price * this.props.shares).toFixed(2)}</PriceText>
                 </ShareLine>
                 <ShareLine>
-                  <ExecuteCheck></ExecuteCheck>
-                  <ExecuteMessage>This order should only execute during normal market hours.</ExecuteMessage>
+                  {executeCheckComp}
                 </ShareLine>
                 <CenterLine>
                   {button}
@@ -133,4 +165,5 @@ class MiddleBar extends React.Component {
         )
     }
 }
+
 export default MiddleBar;
