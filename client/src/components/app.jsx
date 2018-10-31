@@ -12,7 +12,7 @@ class App extends React.Component {
             open: false,
             balance: 1000,
             price: '214.19',
-            error: true
+            error: false
         }
     }
 
