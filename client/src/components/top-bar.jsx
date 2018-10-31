@@ -68,7 +68,8 @@ class TopBar extends React.Component {
         super(props)
     }
     render() {
-        let dotsRender = this.props.error ?  <Padlock src='/images/padlock.png'/> : <ThreeDots open={this.props.open} up={this.props.up}/>
+        const padlockColor = this.props.open ? '/images/padlock.png' : '/images/padlock-white.png'
+        const dotsRender = this.props.error ?  <Padlock src={padlockColor}/> : <ThreeDots open={this.props.open} up={this.props.up}/>
         return (
             <TopBarWrapper open={this.props.open}>
                 <Buy open={this.props.open}>Buy {this.props.ticker}</Buy>

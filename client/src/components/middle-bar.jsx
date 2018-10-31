@@ -122,11 +122,11 @@ class MiddleBar extends React.Component {
 
     // need to add all types of errors
     reviewClickHandler() {
-      if (this.props.shares < 0) {
+      if (this.props.shares <= 0) {
         return this.props.updateState({error: 'invalidNumber'})
       } 
       if (this.props.balance < this.props.price * this.props.shares) {
-        this.props.updateState({error: 'insufficientFunds'})
+        this.props.updateState({error: 'lackOfFunds'})
       }
       //else go to purchase page?
     }
@@ -137,7 +137,7 @@ class MiddleBar extends React.Component {
     }
 
     render() {
-      let button = this.props.error === 'insufficientFunds'?  null : !this.props.error ? <ReviewButton onClick={this.reviewClickHandler.bind(this)}>Review Order</ReviewButton> : <ReviewButton onClick={this.backClickHandler.bind(this)}>Back</ReviewButton>
+      let button = this.props.error === 'lackOfFunds'?  null : !this.props.error ? <ReviewButton onClick={this.reviewClickHandler.bind(this)}>Review Order</ReviewButton> : <ReviewButton onClick={this.backClickHandler.bind(this)}>Back</ReviewButton>
       let executeCheckComp = this.props.open ? null : <ExecuteCheckComp />
         return (
             <MiddleBarWrapper open={this.props.open}>
