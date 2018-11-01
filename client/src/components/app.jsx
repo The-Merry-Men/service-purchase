@@ -16,7 +16,7 @@ class App extends React.Component {
         this.state = {
             name: 'default',
             ticker: 'default',
-            up: false,
+            up: true,
             open: true,
             balance: 1000,
             shares: 0,

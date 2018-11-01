@@ -32,6 +32,7 @@ const ErrorImg = styled.span `
     display: inline-block;
     text-align: center;
     font-size: 11px;
+    margin-right: 5px;
 `
 
 class ReviewBar extends React.Component {
@@ -50,7 +51,7 @@ class ReviewBar extends React.Component {
     }
 
     const errorMessage = errorCodes[this.props.error];
-    const errorBarMessage = this.props.error === 'invaldNumber' ? 'Error' : 'Not Enough Purchasing Power';
+    const errorBarMessage = this.props.error === 'invalidNumber' ? 'Error' : 'Not Enough Purchasing Power';
     
     if (this.props.error) {
       return (
