@@ -60,8 +60,12 @@ const MarketPriceText = styled(ShareText) `
 const ExecuteCheck = styled.button `
     background-color: ${props => props.up ? "#21ce99" : "#f45531"};
     border: none;
-    padding: 8px;
-    border-radius: 4px;
+    padding-left: 4px;
+    padding-right: 4px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    border-radius: 3px;
+    margin-left:3px;
     display: inline-block;
 `
 //needs css changes
@@ -98,10 +102,10 @@ class ExecuteCheckComp extends React.Component {
   }
   render() {
     return (
-      <div>
-        <ExecuteCheck up={this.props.up}></ExecuteCheck>
+      <ShareLine>
+        <ExecuteCheck up={this.props.up}>✓</ExecuteCheck>
         <ExecuteMessage up={this.props.up}>This order should only execute during normal market hours.</ExecuteMessage>
-      </div>
+      </ShareLine>
     )
   }
 }
