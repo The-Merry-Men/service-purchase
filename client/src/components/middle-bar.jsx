@@ -51,11 +51,12 @@ const ShareInput = styled.input `
         border-color: ${props => props.open ? "#cbcbcd" : "#8c8c8e"};
     }
 `
+
 const MarketPriceText = styled(ShareText) `
     color: ${props => props.up ? "#21ce99" : "#f45531"};
     font-weight: 600; 
 `
-//needs css changes
+
 const ExecuteCheck = styled.button `
     background-color: ${props => props.up ? "#21ce99" : "#f45531"};
     border: none;
@@ -108,22 +109,15 @@ class ExecuteCheckComp extends React.Component {
 class MiddleBar extends React.Component {
     constructor(props) {
         super(props)
-        // this.state = {
-        //   shares: 0
-        // }
     }
-
     updateShares(e) {
       this.props.updateState({shares: e.target.value})
-      // this.setState({
-      //   shares: e.target.value
-      // })
     }
 
     // need to add all types of errors
     reviewClickHandler() {
       if (this.props.shares <= 0) {
-        return this.props.updateState({error: 'invalidNumber'})
+        return this.props.updateState({error: 'invalidNumber'});
       } 
       if (this.props.balance < this.props.price * this.props.shares) {
         this.props.updateState({error: 'lackOfFunds'})

@@ -40,7 +40,7 @@ class App extends React.Component {
           name: data.company_name,
           ticker: data.ticker_symbol,
           up: true,
-          open: true,
+          open: false,
           balance: 1000,
           shares: 0,
           price: '214.19',
@@ -54,7 +54,7 @@ class App extends React.Component {
       <div>
       <TopBar up={this.state.up} open={this.state.open} error={this.state.error} ticker={this.state.ticker}/>
       <MiddleBar up={this.state.up} open={this.state.open} price={this.state.price} error={this.state.error} updateState={this.updateState.bind(this)} balance={this.state.balance} shares={this.state.shares}/>
-      <ReviewBar up={this.state.up} open={this.state.open} error={this.state.error} balance={this.state.balance} shares={this.state.shares} price={this.state.price}/>
+      <ReviewBar up={this.state.up} open={this.state.open} error={this.state.error} balance={this.state.balance} shares={this.state.shares} price={this.state.price} updateState={this.updateState.bind(this)}/>
       <BottomBar open={this.state.open} balance={this.state.balance}/>
       </div>
     )

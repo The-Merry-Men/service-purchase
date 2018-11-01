@@ -35,6 +35,39 @@ const ErrorImg = styled.span `
     margin-right: 5px;
 `
 
+const ExecuteCheck = styled.button `
+    background-color: ${props => props.up ? "#21ce99" : "#f45531"};
+    border: none;
+    padding: 8px;
+    border-radius: 4px;
+    display: inline-block;
+`
+
+const ReviewButton = styled(ExecuteCheck) `
+    color: black;
+    padding: 10px 52px;
+    &:hover {
+        background-color: ${props => props.up ? "#1ae9aa" : "#ff6340"};
+    };
+`
+
+const ShareLine = styled.div `
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+`
+
+const CenterLine = styled(ShareLine) `
+    justify-content: center;
+`
+
+const BackButton = styled.button `
+  background: none;
+  border: none;
+  color: ${props => props.up ? "#1ae9aa" : "#ff6340"}
+`
+
 class ReviewBar extends React.Component {
   constructor(props) {
     super(props)
@@ -63,6 +96,12 @@ class ReviewBar extends React.Component {
           <LeftLine>
             <ErrorText open={this.props.open}>{errorMessage}</ErrorText>
           </LeftLine>
+          <CenterLine>
+            <ReviewButton up={this.props.up}>Deposit ${(this.props.price * this.props.shares - this.props.balance).toFixed(2)}</ReviewButton>
+          </CenterLine>
+          <CenterLine>
+            <BackButton onClick={() => this.props.updateState({error: false})} up={this.props.up} >Back</BackButton>
+          </CenterLine>
         </ReviewBarWrapper>
       )
     } else {
