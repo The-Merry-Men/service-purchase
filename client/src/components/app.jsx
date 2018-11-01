@@ -31,7 +31,6 @@ class App extends React.Component {
 
     componentDidMount() {
       const randomId = Math.ceil(Math.random() * 99);
-      console.log(randomId)
       fetch(`http://localhost:3001/companies/${randomId}`, {
         method: 'GET'
       })
@@ -40,8 +39,8 @@ class App extends React.Component {
         this.setState({
           name: data.company_name,
           ticker: data.ticker_symbol,
-          up: false,
-          open: false,
+          up: true,
+          open: true,
           balance: 1000,
           shares: 0,
           price: '214.19',

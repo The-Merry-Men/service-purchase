@@ -57,7 +57,7 @@ const MarketPriceText = styled(ShareText) `
 `
 //needs css changes
 const ExecuteCheck = styled.button `
-    background-color: #f45531;
+    background-color: ${props => props.up ? "#21ce99" : "#f45531"};
     border: none;
     padding: 8px;
     border-radius: 4px;
@@ -73,7 +73,7 @@ const ReviewButton = styled(ExecuteCheck) `
     color: black;
     padding: 10px 52px;
     &:hover {
-        background-color: #ff6340;
+        background-color: ${props => props.up ? "#1ae9aa" : "#ff6340"};
     };
 `
 
@@ -98,8 +98,8 @@ class ExecuteCheckComp extends React.Component {
   render() {
     return (
       <div>
-        <ExecuteCheck></ExecuteCheck>
-        <ExecuteMessage>This order should only execute during normal market hours.</ExecuteMessage>
+        <ExecuteCheck up={this.props.up}></ExecuteCheck>
+        <ExecuteMessage up={this.props.up}>This order should only execute during normal market hours.</ExecuteMessage>
       </div>
     )
   }
@@ -137,8 +137,17 @@ class MiddleBar extends React.Component {
     }
 
     render() {
-      let button = this.props.error === 'lackOfFunds'?  null : !this.props.error ? <ReviewButton onClick={this.reviewClickHandler.bind(this)}>Review Order</ReviewButton> : <ReviewButton onClick={this.backClickHandler.bind(this)}>Back</ReviewButton>
-      let executeCheckComp = this.props.open ? null : <ExecuteCheckComp />
+      if (this.props.error === 'lackOfFunds') {
+        var button = null
+      } else {
+        if (this.props.error) {
+          var button = (<ReviewButton onClick={this.backClickHandler.bind(this)} up={this.props.up}>Back</ReviewButton>) 
+        } else {
+          var button = (<ReviewButton up={this.props.up} onClick={this.reviewClickHandler.bind(this)}>Review Order</ReviewButton>)
+        }
+      }
+
+      let executeCheckComp = this.props.open ? null : <ExecuteCheckComp up={this.props.up}/>
         return (
             <MiddleBarWrapper open={this.props.open}>
                 <ShareLine>
