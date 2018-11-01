@@ -1,10 +1,14 @@
 import React from 'react';
 import styled from 'styled-components';
 
+const rhBlack = '"#1b1b1d"';
+const rhGreen = "#21ce99";
+const rhOrange = "#f45531";
+
 const MenuBottomBarWrapper = styled.div `
     display: flex;
     flex-direction: column;
-    background: ${props => props.open ? "white" : "#1b1b1d"}
+    background: ${props => props.open ? "white" : rhBlack}
     border: 1px solid ${props => props.open ? "rgb(224, 224, 224)" : "black"};
     box-shadow: 1px 1px 10px 1px ${props => props.open ? "whitesmoke" : "black"};
     height: 168px;
@@ -21,14 +25,24 @@ const Text13Div = styled.div `
     align: left;
     margin-left: 12px;
     margin-top: 4px;
-    color : ${props => props.clicked ? 'green' : 'black'}
+    color : ${props => {
+      if (!props.clicked) {
+        return "black"
+      } else {
+        if (props.up) {
+          return rhGreen
+        } else {
+          return rhOrange
+        }
+      }
+    }}
 `
 
 class MenuButton extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      clicked: false
+      clicked: props.default
     }
   }
   clickHandler() {
@@ -38,7 +52,7 @@ class MenuButton extends React.Component {
   }
   render() {
     return (
-      <Text13Div onClick={this.clickHandler.bind(this)} clicked={this.state.clicked}>{this.props.text}</Text13Div>
+      <Text13Div onClick={this.clickHandler.bind(this)} clicked={this.state.clicked} up={this.props.up}>{this.props.text}</Text13Div>
     )
   }
 }
@@ -50,7 +64,7 @@ class MenuBottomBar extends React.Component {
   render() {
     return (
       <MenuBottomBarWrapper open={this.props.open}>
-      <MenuButton text='Market Order' />
+      <MenuButton text='Market Order' default={true}/>
       <MenuButton text='Limit Order'/>
       <MenuButton text='Stop Loss Order'/>
       <MenuButton text='Stop Limit Order'/>

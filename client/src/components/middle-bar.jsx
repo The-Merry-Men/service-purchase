@@ -1,6 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
 
+const rhBlack = '"#1b1b1d"';
+const rhGreen = "#21ce99";
+const rhOrange = "#f45531";
+
 const MiddleBarWrapper = styled.div `
     border: 1px solid black;
     width: 228px;
@@ -49,7 +53,7 @@ const ShareInput = styled.input `
     margin-right: 10px;
     margin-bottom: 4px;
     &:focus {
-      border-color:${props => props.up ? "#21ce99" : "#f45531"} !important;
+      border-color:${props => props.up ? rhGreen : rhOrange} !important;
       outline: none
     }
     ${ShareLine}: hover & {
@@ -58,12 +62,12 @@ const ShareInput = styled.input `
 `
 
 const MarketPriceText = styled(ShareText) `
-    color: ${props => props.up ? "#21ce99" : "#f45531"};
+    color: ${props => props.up ? rhGreen : rhOrange};
     font-weight: 600; 
 `
 
 const ExecuteCheck = styled.button `
-    background-color: ${props => props.up ? "#21ce99" : "#f45531"};
+    background-color: ${props => props.up ? rhGreen : rhOrange};
     border: none;
     padding-left: 4px;
     padding-right: 4px;
