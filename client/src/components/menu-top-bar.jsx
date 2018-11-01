@@ -28,8 +28,8 @@ class MenuTopBar extends React.Component {
   }
   render() {
     return (
-      <TopBarWrapper open={this.props.open}>
-        <OrderType open={this.props.open}>Order Type</OrderType>
+      <TopBarWrapper open={this.props.open} up={this.props.up}>
+        <OrderType open={this.props.open} up={this.props.up}>Order Type</OrderType>
       </TopBarWrapper>
     )
   }

@@ -10,8 +10,8 @@ class Menu extends React.Component {
   render() {
     return (
       <div>
-      <MenuTopBar open={this.props.open}/>
-      <MenuBottomBar open={this.props.open}/>
+      <MenuTopBar open={this.props.open} up={this.props.up}/>
+      <MenuBottomBar open={this.props.open} up={this.props.up}/>
       </div>
     )
   }

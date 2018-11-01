@@ -48,11 +48,13 @@ class App extends React.Component {
   render() {
     return (
       <div>
+      <button onClick={() => this.updateState({open: !this.state.open})}>Open/Close</button>
+      <button onClick={() => this.updateState({up: !this.state.up})}>Up/Down</button>
       <TopBar up={this.state.up} open={this.state.open} error={this.state.error} ticker={this.state.ticker}/>
       <MiddleBar up={this.state.up} open={this.state.open} price={this.state.price} error={this.state.error} updateState={this.updateState.bind(this)} balance={this.state.balance} shares={this.state.shares}/>
       <ReviewBar up={this.state.up} open={this.state.open} error={this.state.error} balance={this.state.balance} shares={this.state.shares} price={this.state.price} updateState={this.updateState.bind(this)}/>
       <BottomBar open={this.state.open} balance={this.state.balance}/>
-      <Menu open={this.state.open}/>
+      <Menu open={this.state.open} up={this.state.up}/>
       </div>
     )
   }

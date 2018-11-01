@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const rhBlack = '"#1b1b1d"';
+const rhBlack = "#1b1b1d";
 const rhGreen = "#21ce99";
 const rhOrange = "#f45531";
 
@@ -27,7 +27,11 @@ const Text13Div = styled.div `
     margin-top: 4px;
     color : ${props => {
       if (!props.clicked) {
-        return "black"
+        if (props.open) {
+          return "black"
+        } else {
+          return "white"
+        }
       } else {
         if (props.up) {
           return rhGreen
@@ -52,7 +56,7 @@ class MenuButton extends React.Component {
   }
   render() {
     return (
-      <Text13Div onClick={this.clickHandler.bind(this)} clicked={this.state.clicked} up={this.props.up}>{this.props.text}</Text13Div>
+      <Text13Div onClick={this.clickHandler.bind(this)} clicked={this.state.clicked} up={this.props.up} open={this.props.open}>{this.props.text}</Text13Div>
     )
   }
 }
@@ -63,11 +67,11 @@ class MenuBottomBar extends React.Component {
   }
   render() {
     return (
-      <MenuBottomBarWrapper open={this.props.open}>
-      <MenuButton text='Market Order' default={true}/>
-      <MenuButton text='Limit Order'/>
-      <MenuButton text='Stop Loss Order'/>
-      <MenuButton text='Stop Limit Order'/>
+      <MenuBottomBarWrapper open={this.props.open} up={this.props.up}>
+      <MenuButton text='Market Order' open={this.props.open} default={true} up={this.props.up}/>
+      <MenuButton text='Limit Order' open={this.props.open} up={this.props.up}/>
+      <MenuButton text='Stop Loss Order' open={this.props.open} up={this.props.up}/>
+      <MenuButton text='Stop Limit Order' open={this.props.open} up={this.props.up}/>
       </MenuBottomBarWrapper>
     )
   }
