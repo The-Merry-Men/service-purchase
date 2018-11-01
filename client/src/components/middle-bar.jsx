@@ -37,6 +37,7 @@ const PriceText = styled(ShareText) `
     font-weight: 600;
 `
 
+//color the same for open/closed?
 const ShareInput = styled.input `
     text-align: right;
     width: 40px;
@@ -47,6 +48,10 @@ const ShareInput = styled.input `
     padding-right: 5px;
     margin-right: 10px;
     margin-bottom: 4px;
+    &:focus {
+      border-color:${props => props.up ? "#21ce99" : "#f45531"} !important;
+      outline: none
+    }
     ${ShareLine}: hover & {
         border-color: ${props => props.open ? "#cbcbcd" : "#8c8c8e"};
     }
@@ -91,7 +96,7 @@ class ShareInputComp extends React.Component {
   }
   render() {
     return (
-      <ShareInput clicked={this.state.clicked} open={this.props.open} placeholder={0}/>
+      <ShareInput clicked={this.state.clicked} open={this.props.open} up={this.props.up} placeholder={0}/>
     )
   }
 }
@@ -151,7 +156,7 @@ class MiddleBar extends React.Component {
                 <ShareLine>
                     <ShareText open={this.props.open}>Shares</ShareText>
                     <form onChange={this.updateShares.bind(this)}>
-                        <ShareInputComp open={this.props.open} type='text' placeholder='0'/>
+                        <ShareInputComp up={this.props.up} open={this.props.open} type='text' placeholder='0'/>
                     </form>
                 </ShareLine>
                 <ShareLine>
