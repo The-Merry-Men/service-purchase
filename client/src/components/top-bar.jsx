@@ -22,6 +22,8 @@ const Buy = styled.div `
 `
 const DotsWrapper = styled.div `
     margin-right: 10px;
+    height: 25px;
+    width: 25px;
 `
 const Dot = styled.span `
     height: 4px;
@@ -36,21 +38,43 @@ const Dot = styled.span `
     }
 `
 
+const Padlock = styled.img `
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+`
+
 
 //props.ticker //props.open
 //is there a better way than just passing this.props.open to everything? redux
+
+class ThreeDots extends React.Component {
+  constructor(props) {
+    super(props)
+  }
+  render() {
+    return (
+      <div>
+      <Dot open={this.props.open} up={this.props.up}></Dot>
+      <Dot open={this.props.open} up={this.props.up}></Dot>
+      <Dot open={this.props.open} up={this.props.up}></Dot>
+      </div>
+    )
+  }
+}
+
 class TopBar extends React.Component {
     constructor(props) {
         super(props)
     }
     render() {
+        const padlockColor = this.props.open ? '/images/padlock.png' : '/images/padlock-white.png'
+        const dotsRender = this.props.error ?  <Padlock src={padlockColor}/> : <ThreeDots open={this.props.open} up={this.props.up}/>
         return (
             <TopBarWrapper open={this.props.open}>
                 <Buy open={this.props.open}>Buy {this.props.ticker}</Buy>
                 <DotsWrapper open={this.props.open}>
-                <Dot open={this.props.open} up={this.props.up}></Dot>
-                <Dot open={this.props.open} up={this.props.up}></Dot>
-                <Dot open={this.props.open} up={this.props.up}></Dot>
+                  {dotsRender}
                 </DotsWrapper>
             </TopBarWrapper>
         )   

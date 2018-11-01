@@ -8,7 +8,7 @@
     "react-dev": "webpack -d --watch",
     "start": "nodemon server.js --watch",
     "initialize schema": "mysql -u root -p < puchase.sql",
-    "make-company-data": "node data_generator.js"
+    "seed": "node database/data_generator.js"
   },
   "repository": {
     "type": "git",

@@ -51,16 +51,21 @@ const ShareInput = styled.input `
         border-color: ${props => props.open ? "#cbcbcd" : "#8c8c8e"};
     }
 `
+
 const MarketPriceText = styled(ShareText) `
     color: ${props => props.up ? "#21ce99" : "#f45531"};
     font-weight: 600; 
 `
-//needs css changes
+
 const ExecuteCheck = styled.button `
-    background-color: #f45531;
+    background-color: ${props => props.up ? "#21ce99" : "#f45531"};
     border: none;
-    padding: 8px;
-    border-radius: 4px;
+    padding-left: 4px;
+    padding-right: 4px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    border-radius: 3px;
+    margin-left:3px;
     display: inline-block;
 `
 //needs css changes
@@ -73,21 +78,80 @@ const ReviewButton = styled(ExecuteCheck) `
     color: black;
     padding: 10px 52px;
     &:hover {
-        background-color: #ff6340;
-    }
+        background-color: ${props => props.up ? "#1ae9aa" : "#ff6340"};
+    };
 `
+
+class ShareInputComp extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      clicked: false
+    }
+  }
+  render() {
+    return (
+      <ShareInput clicked={this.state.clicked} open={this.props.open} placeholder={0}/>
+    )
+  }
+}
+
+class ExecuteCheckComp extends React.Component {
+  constructor(props) {
+    super(props)
+  }
+  render() {
+    return (
+      <ShareLine>
+        <ExecuteCheck up={this.props.up}>✓</ExecuteCheck>
+        <ExecuteMessage up={this.props.up}>This order should only execute during normal market hours.</ExecuteMessage>
+      </ShareLine>
+    )
+  }
+}
 
 class MiddleBar extends React.Component {
     constructor(props) {
         super(props)
     }
+    updateShares(e) {
+      this.props.updateState({shares: e.target.value})
+    }
+
+    // need to add all types of errors
+    reviewClickHandler() {
+      if (this.props.shares <= 0) {
+        return this.props.updateState({error: 'invalidNumber'});
+      } 
+      if (this.props.balance < this.props.price * this.props.shares) {
+        this.props.updateState({error: 'lackOfFunds'})
+      }
+      //else go to purchase page?
+    }
+
+    backClickHandler() {
+      console.log('back handler')
+      this.props.updateState({error: false})
+    }
+
     render() {
+      if (this.props.error === 'lackOfFunds') {
+        var button = null
+      } else {
+        if (this.props.error) {
+          var button = (<ReviewButton onClick={this.backClickHandler.bind(this)} up={this.props.up}>Back</ReviewButton>) 
+        } else {
+          var button = (<ReviewButton up={this.props.up} onClick={this.reviewClickHandler.bind(this)}>Review Order</ReviewButton>)
+        }
+      }
+
+      let executeCheckComp = this.props.open ? null : <ExecuteCheckComp up={this.props.up}/>
         return (
             <MiddleBarWrapper open={this.props.open}>
                 <ShareLine>
                     <ShareText open={this.props.open}>Shares</ShareText>
-                    <form>
-                        <ShareInput open={this.props.open} type='text' value='0'/>
+                    <form onChange={this.updateShares.bind(this)}>
+                        <ShareInputComp open={this.props.open} type='text' placeholder='0'/>
                     </form>
                 </ShareLine>
                 <ShareLine>
@@ -96,14 +160,13 @@ class MiddleBar extends React.Component {
                 </ShareLine>
                 <ShareLine>
                     <PriceText open={this.props.open}>Estimated Cost</PriceText>
-                    <PriceText open={this.props.open}>$0.00</PriceText>
+                    <PriceText open={this.props.open}>{(this.props.price * this.props.shares).toFixed(2)}</PriceText>
                 </ShareLine>
                 <ShareLine>
-                    <ExecuteCheck></ExecuteCheck>
-                    <ExecuteMessage>This order should only execute during normal market hours.</ExecuteMessage>
+                  {executeCheckComp}
                 </ShareLine>
                 <CenterLine>
-                    <ReviewButton>Review Order</ReviewButton>
+                  {button}
                 </CenterLine>
             </MiddleBarWrapper>
         )
