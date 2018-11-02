@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+import Menu from './menu.jsx'
 
 const TopBarWrapper = styled.div `
     display: flex;
@@ -24,6 +25,7 @@ const DotsWrapper = styled.div `
     margin-right: 10px;
     height: 25px;
     width: 25px;
+    position: relative;
 `
 const Dot = styled.span `
     height: 4px;
@@ -70,15 +72,20 @@ class TopBar extends React.Component {
     render() {
         const padlockColor = this.props.open ? '/images/padlock.png' : '/images/padlock-white.png'
         const dotsRender = this.props.error ?  <Padlock src={padlockColor}/> : <ThreeDots open={this.props.open} up={this.props.up}/>
+        const menu = this.props.menu  && !this.props.error? <Menu open={this.props.open} up={this.props.up} /> : null;
         return (
             <TopBarWrapper open={this.props.open}>
                 <Buy open={this.props.open}>Buy {this.props.ticker}</Buy>
-                <DotsWrapper open={this.props.open}>
+                <DotsWrapper error={this.props.error} open={this.props.open} onClick={() => {
+                  this.props.error ? null : this.props.clickHandler({menu: !this.props.menu})}
+                  }>
                   {dotsRender}
+                  {menu}
                 </DotsWrapper>
             </TopBarWrapper>
         )   
     }
 }
+//put menu
 export default TopBar;
 

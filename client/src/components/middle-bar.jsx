@@ -1,6 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
 
+const rhBlack = '"#1b1b1d"';
+const rhGreen = "#21ce99";
+const rhOrange = "#f45531";
+
 const MiddleBarWrapper = styled.div `
     border: 1px solid black;
     width: 228px;
@@ -20,6 +24,7 @@ const ShareLine = styled.div `
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
+    height: 48px;
 `
 
 const CenterLine = styled(ShareLine) `
@@ -37,6 +42,7 @@ const PriceText = styled(ShareText) `
     font-weight: 600;
 `
 
+//color the same for open/closed?
 const ShareInput = styled.input `
     text-align: right;
     width: 40px;
@@ -47,18 +53,23 @@ const ShareInput = styled.input `
     padding-right: 5px;
     margin-right: 10px;
     margin-bottom: 4px;
+    &:focus {
+      border-color:${props => props.up ? rhGreen : rhOrange} !important;
+      outline: none
+    }
     ${ShareLine}: hover & {
         border-color: ${props => props.open ? "#cbcbcd" : "#8c8c8e"};
-    }
+    };
+    pointer-events: ${props => props.error ? "none" : "auto"};
 `
 
 const MarketPriceText = styled(ShareText) `
-    color: ${props => props.up ? "#21ce99" : "#f45531"};
+    color: ${props => props.up ? rhGreen : rhOrange};
     font-weight: 600; 
 `
 
 const ExecuteCheck = styled.button `
-    background-color: ${props => props.up ? "#21ce99" : "#f45531"};
+    background-color: ${props => props.up ? rhGreen : rhOrange};
     border: none;
     padding-left: 4px;
     padding-right: 4px;
@@ -91,7 +102,7 @@ class ShareInputComp extends React.Component {
   }
   render() {
     return (
-      <ShareInput clicked={this.state.clicked} open={this.props.open} placeholder={0}/>
+      <ShareInput error={this.props.error} clicked={this.state.clicked} open={this.props.open} up={this.props.up} placeholder={0}/>
     )
   }
 }
@@ -126,7 +137,9 @@ class MiddleBar extends React.Component {
       if (this.props.balance < this.props.price * this.props.shares) {
         this.props.updateState({error: 'lackOfFunds'})
       }
-      //else go to purchase page?
+      else {
+        alert('go to purchase page')
+      }
     }
 
     backClickHandler() {
@@ -151,7 +164,7 @@ class MiddleBar extends React.Component {
                 <ShareLine>
                     <ShareText open={this.props.open}>Shares</ShareText>
                     <form onChange={this.updateShares.bind(this)}>
-                        <ShareInputComp open={this.props.open} type='text' placeholder='0'/>
+                        <ShareInputComp error={this.props.error} up={this.props.up} open={this.props.open} type='text' placeholder='0'/>
                     </form>
                 </ShareLine>
                 <ShareLine>

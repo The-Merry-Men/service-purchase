@@ -4,12 +4,7 @@ import MiddleBar from './middle-bar.jsx';
 import BottomBar from './bottom-bar.jsx';
 import ReviewBar from './review-bar.jsx';
 
-
-
 //const MyContext = React.createContext();
-
-
-
 class App extends React.Component {
     constructor(props) {
         super(props)
@@ -21,7 +16,7 @@ class App extends React.Component {
             balance: 1000,
             shares: 0,
             price: '214.19',
-            error: false
+            error: false,
         }
     }
 
@@ -39,12 +34,13 @@ class App extends React.Component {
         this.setState({
           name: data.company_name,
           ticker: data.ticker_symbol,
-          up: true,
+          up: false,
           open: false,
           balance: 1000,
           shares: 0,
           price: '214.19',
-          error: false
+          error: false,
+          menu: false
         }) 
       })
     }
@@ -52,7 +48,9 @@ class App extends React.Component {
   render() {
     return (
       <div>
-      <TopBar up={this.state.up} open={this.state.open} error={this.state.error} ticker={this.state.ticker}/>
+      <button onClick={() => this.updateState({open: !this.state.open})}>Open/Close</button>
+      <button onClick={() => this.updateState({up: !this.state.up})}>Up/Down</button>
+      <TopBar up={this.state.up} open={this.state.open} error={this.state.error} ticker={this.state.ticker} menu={this.state.menu} clickHandler={this.updateState.bind(this)}/>
       <MiddleBar up={this.state.up} open={this.state.open} price={this.state.price} error={this.state.error} updateState={this.updateState.bind(this)} balance={this.state.balance} shares={this.state.shares}/>
       <ReviewBar up={this.state.up} open={this.state.open} error={this.state.error} balance={this.state.balance} shares={this.state.shares} price={this.state.price} updateState={this.updateState.bind(this)}/>
       <BottomBar open={this.state.open} balance={this.state.balance}/>
