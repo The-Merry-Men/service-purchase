@@ -18,30 +18,6 @@ const MenuBottomBarWrapper = styled.div `
     justify-content: space-evenly;
 `
 
-// const Text13Div = styled.div `
-//     font-size: 16px;
-//     font-weight: 600;
-//     font-family: "DIN Pro", -apple-system, BlinkMacSystemFont, sans-serif;
-//     align: left;
-//     margin-left: 12px;
-//     margin-top: 4px;
-//     color : ${props => {
-//       if (!props.clicked) {
-//         if (props.open) {
-//           return "black"
-//         } else {
-//           return "white"
-//         }
-//       } else {
-//         if (props.up) {
-//           return rhGreen
-//         } else {
-//           return rhOrange
-//         }
-//       }
-//     }}
-// `
-
 const Text13Div = styled.div `
     font-size: 16px;
     font-weight: 600;
@@ -83,14 +59,14 @@ class MenuBottomBar extends React.Component {
     })
   }
   render() {
+    const menuText = ['Market Order', 'Limit Order', 'Stop Loss Order', 'Stop Limit Order']
     return (
       <MenuBottomBarWrapper open={this.props.open} up={this.props.up}>
-        <MenuButton text='Market Order' open={this.props.open} up={this.props.up} clickHandler={(e) => {this.clickHandler.bind(this)(1)}} clicked={this.state.clicked} index={1}/>
-        <MenuButton text='Limit Order' open={this.props.open} up={this.props.up} clickHandler={(e) => {this.clickHandler.bind(this)(2)}} clicked={this.state.clicked} index={2}/>
-        <MenuButton text='Stop Loss Order' open={this.props.open} up={this.props.up} clickHandler={(e) => {this.clickHandler.bind(this)(3)}} clicked={this.state.clicked} index={3}/>
-        <MenuButton text='Stop Limit Order' open={this.props.open} up={this.props.up} clickHandler={(e) => {this.clickHandler.bind(this)(4)}} clicked={this.state.clicked} index={4}/>
+        {menuText.map((val, index) => (
+          <MenuButton text={val} open={this.props.open} up={this.props.up} clickHandler={(e) => {this.clickHandler.bind(this)(index)}} clicked={this.state.clicked} index={index}/>
+        ))}
       </MenuBottomBarWrapper>
-    )
+    ) 
   }
 }
 
