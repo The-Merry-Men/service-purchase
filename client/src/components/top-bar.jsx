@@ -72,11 +72,13 @@ class TopBar extends React.Component {
     render() {
         const padlockColor = this.props.open ? '/images/padlock.png' : '/images/padlock-white.png'
         const dotsRender = this.props.error ?  <Padlock src={padlockColor}/> : <ThreeDots open={this.props.open} up={this.props.up}/>
-        const menu = this.props.menu ? <Menu open={this.props.open} up={this.props.up} /> : null;
+        const menu = this.props.menu  && !this.props.error? <Menu open={this.props.open} up={this.props.up} /> : null;
         return (
             <TopBarWrapper open={this.props.open}>
                 <Buy open={this.props.open}>Buy {this.props.ticker}</Buy>
-                <DotsWrapper open={this.props.open} onClick={() => {this.props.clickHandler({menu: !this.props.menu})}}>
+                <DotsWrapper error={this.props.error} open={this.props.open} onClick={() => {
+                  this.props.error ? null : this.props.clickHandler({menu: !this.props.menu})}
+                  }>
                   {dotsRender}
                   {menu}
                 </DotsWrapper>

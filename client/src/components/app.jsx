@@ -3,7 +3,6 @@ import TopBar from './top-bar.jsx'
 import MiddleBar from './middle-bar.jsx';
 import BottomBar from './bottom-bar.jsx';
 import ReviewBar from './review-bar.jsx';
-import Menu from './menu.jsx';
 
 //const MyContext = React.createContext();
 class App extends React.Component {

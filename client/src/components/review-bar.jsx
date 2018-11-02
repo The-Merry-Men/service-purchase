@@ -86,7 +86,7 @@ class ReviewBar extends React.Component {
     const errorMessage = errorCodes[this.props.error];
     const errorBarMessage = this.props.error === 'invalidNumber' ? 'Error' : 'Not Enough Purchasing Power';
     
-    if (this.props.error) {
+    if (this.props.error === 'lackOfFunds') {
       return (
         <ReviewBarWrapper open={this.props.open}>
           <LeftLine>

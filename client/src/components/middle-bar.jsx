@@ -58,7 +58,8 @@ const ShareInput = styled.input `
     }
     ${ShareLine}: hover & {
         border-color: ${props => props.open ? "#cbcbcd" : "#8c8c8e"};
-    }
+    };
+    pointer-events: ${props => props.error ? "none" : "auto"};
 `
 
 const MarketPriceText = styled(ShareText) `
@@ -100,7 +101,7 @@ class ShareInputComp extends React.Component {
   }
   render() {
     return (
-      <ShareInput clicked={this.state.clicked} open={this.props.open} up={this.props.up} placeholder={0}/>
+      <ShareInput error={this.props.error} clicked={this.state.clicked} open={this.props.open} up={this.props.up} placeholder={0}/>
     )
   }
 }
@@ -135,7 +136,9 @@ class MiddleBar extends React.Component {
       if (this.props.balance < this.props.price * this.props.shares) {
         this.props.updateState({error: 'lackOfFunds'})
       }
-      //else go to purchase page?
+      else {
+        alert('go to purchase page')
+      }
     }
 
     backClickHandler() {
@@ -160,7 +163,7 @@ class MiddleBar extends React.Component {
                 <ShareLine>
                     <ShareText open={this.props.open}>Shares</ShareText>
                     <form onChange={this.updateShares.bind(this)}>
-                        <ShareInputComp up={this.props.up} open={this.props.open} type='text' placeholder='0'/>
+                        <ShareInputComp error={this.props.error} up={this.props.up} open={this.props.open} type='text' placeholder='0'/>
                     </form>
                 </ShareLine>
                 <ShareLine>

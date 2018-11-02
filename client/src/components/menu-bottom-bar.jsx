@@ -55,7 +55,7 @@ const Text13Div = styled.div `
       } else {
         return props.open ? "black" : "white";
       }
-    }}
+    }};
 `
 
 class MenuButton extends React.Component {
@@ -85,10 +85,10 @@ class MenuBottomBar extends React.Component {
   render() {
     return (
       <MenuBottomBarWrapper open={this.props.open} up={this.props.up}>
-        <MenuButton text='Market Order' open={this.props.open} up={this.props.up} clickHandler={(e) => {this.clickHandler.bind(this)(1)}} clicked={this.state.clicked}/>
-        <MenuButton text='Limit Order' open={this.props.open} up={this.props.up} clickHandler={(e) => {this.clickHandler.bind(this)(2)}} clicked={this.state.clicked}/>
-        <MenuButton text='Stop Loss Order' open={this.props.open} up={this.props.up} clickHandler={(e) => {this.clickHandler.bind(this)(3)}} clicked={this.state.clicked}/>
-        <MenuButton text='Stop Limit Order' open={this.props.open} up={this.props.up} clickHandler={(e) => {this.clickHandler.bind(this)(4)}} clicked={this.state.clicked}/>
+        <MenuButton text='Market Order' open={this.props.open} up={this.props.up} clickHandler={(e) => {this.clickHandler.bind(this)(1)}} clicked={this.state.clicked} index={1}/>
+        <MenuButton text='Limit Order' open={this.props.open} up={this.props.up} clickHandler={(e) => {this.clickHandler.bind(this)(2)}} clicked={this.state.clicked} index={2}/>
+        <MenuButton text='Stop Loss Order' open={this.props.open} up={this.props.up} clickHandler={(e) => {this.clickHandler.bind(this)(3)}} clicked={this.state.clicked} index={3}/>
+        <MenuButton text='Stop Limit Order' open={this.props.open} up={this.props.up} clickHandler={(e) => {this.clickHandler.bind(this)(4)}} clicked={this.state.clicked} index={4}/>
       </MenuBottomBarWrapper>
     )
   }
