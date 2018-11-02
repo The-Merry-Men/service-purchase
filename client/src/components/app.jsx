@@ -35,7 +35,7 @@ class App extends React.Component {
           name: data.company_name,
           ticker: data.ticker_symbol,
           up: false,
-          open: true,
+          open: false,
           balance: 1000,
           shares: 0,
           price: '214.19',

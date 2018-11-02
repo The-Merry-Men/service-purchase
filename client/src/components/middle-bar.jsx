@@ -24,6 +24,7 @@ const ShareLine = styled.div `
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
+    height: 48px;
 `
 
 const CenterLine = styled(ShareLine) `
