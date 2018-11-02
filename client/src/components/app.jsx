@@ -17,7 +17,7 @@ class App extends React.Component {
             balance: 1000,
             shares: 0,
             price: '214.19',
-            error: false
+            error: false,
         }
     }
 

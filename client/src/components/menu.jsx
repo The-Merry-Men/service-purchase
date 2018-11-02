@@ -16,7 +16,7 @@ class Menu extends React.Component {
   }
   render() {
     return (
-      <MenuWrapper onClick={(e) => {console.log('clicked'); e.stopPropagation()}}>
+      <MenuWrapper onClick={(e) => {e.stopPropagation()}}>
       <MenuTopBar open={this.props.open} up={this.props.up}/>
       <MenuBottomBar open={this.props.open} up={this.props.up}/>
       </MenuWrapper>

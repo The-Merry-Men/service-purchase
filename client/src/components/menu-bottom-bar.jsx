@@ -18,6 +18,30 @@ const MenuBottomBarWrapper = styled.div `
     justify-content: space-evenly;
 `
 
+// const Text13Div = styled.div `
+//     font-size: 16px;
+//     font-weight: 600;
+//     font-family: "DIN Pro", -apple-system, BlinkMacSystemFont, sans-serif;
+//     align: left;
+//     margin-left: 12px;
+//     margin-top: 4px;
+//     color : ${props => {
+//       if (!props.clicked) {
+//         if (props.open) {
+//           return "black"
+//         } else {
+//           return "white"
+//         }
+//       } else {
+//         if (props.up) {
+//           return rhGreen
+//         } else {
+//           return rhOrange
+//         }
+//       }
+//     }}
+// `
+
 const Text13Div = styled.div `
     font-size: 16px;
     font-weight: 600;
@@ -25,19 +49,11 @@ const Text13Div = styled.div `
     align: left;
     margin-left: 12px;
     margin-top: 4px;
-    color : ${props => {
-      if (!props.clicked) {
-        if (props.open) {
-          return "black"
-        } else {
-          return "white"
-        }
+    color : ${(props) => {
+      if (props.index === props.clicked) {
+        return props.up ? rhGreen : rhOrange;
       } else {
-        if (props.up) {
-          return rhGreen
-        } else {
-          return rhOrange
-        }
+        return props.open ? "black" : "white";
       }
     }}
 `
@@ -45,18 +61,10 @@ const Text13Div = styled.div `
 class MenuButton extends React.Component {
   constructor(props) {
     super(props)
-    this.state = {
-      clicked: props.default
-    }
-  }
-  clickHandler() {
-    this.setState({
-      clicked: !this.state.clicked
-    })
   }
   render() {
     return (
-      <Text13Div onClick={this.clickHandler.bind(this)} clicked={this.state.clicked} up={this.props.up} open={this.props.open}>{this.props.text}</Text13Div>
+      <Text13Div onClick={this.props.clickHandler} clicked={this.props.clicked} up={this.props.up} open={this.props.open} index={this.props.index}>{this.props.text}</Text13Div>
     )
   }
 }
@@ -64,14 +72,23 @@ class MenuButton extends React.Component {
 class MenuBottomBar extends React.Component {
   constructor(props) {
     super(props)
+    this.state = {
+      clicked: 1
+    }
+  }
+  clickHandler(index) {
+    console.log(index)
+    this.setState({
+      clicked: index
+    })
   }
   render() {
     return (
       <MenuBottomBarWrapper open={this.props.open} up={this.props.up}>
-      <MenuButton text='Market Order' open={this.props.open} default={true} up={this.props.up}/>
-      <MenuButton text='Limit Order' open={this.props.open} up={this.props.up}/>
-      <MenuButton text='Stop Loss Order' open={this.props.open} up={this.props.up}/>
-      <MenuButton text='Stop Limit Order' open={this.props.open} up={this.props.up}/>
+        <MenuButton text='Market Order' open={this.props.open} up={this.props.up} clickHandler={(e) => {this.clickHandler.bind(this)(1)}} clicked={this.state.clicked}/>
+        <MenuButton text='Limit Order' open={this.props.open} up={this.props.up} clickHandler={(e) => {this.clickHandler.bind(this)(2)}} clicked={this.state.clicked}/>
+        <MenuButton text='Stop Loss Order' open={this.props.open} up={this.props.up} clickHandler={(e) => {this.clickHandler.bind(this)(3)}} clicked={this.state.clicked}/>
+        <MenuButton text='Stop Limit Order' open={this.props.open} up={this.props.up} clickHandler={(e) => {this.clickHandler.bind(this)(4)}} clicked={this.state.clicked}/>
       </MenuBottomBarWrapper>
     )
   }
