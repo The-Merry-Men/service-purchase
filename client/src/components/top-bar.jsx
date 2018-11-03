@@ -1,8 +1,8 @@
-import React from 'react'
-import styled from 'styled-components'
-import Menu from './menu.jsx'
+import React from 'react';
+import styled from 'styled-components';
+import Menu from './menu.jsx';
 
-const TopBarWrapper = styled.div `
+const TopBarWrapper = styled.div`
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -14,20 +14,20 @@ const TopBarWrapper = styled.div `
     align-items: center;
     font-family: "DIN Pro", -apple-system, BlinkMacSystemFont, sans-serif;
     font-weight: 600;
-`
-const Buy = styled.div `
+`;
+const Buy = styled.div`
     margin-left: 12px;
     margin-top: 4px;
     font-size: 16px;
     color : ${props => props.open ? "black" : "white"};
-`
-const DotsWrapper = styled.div `
+`;
+const DotsWrapper = styled.div`
     margin-right: 10px;
     height: 25px;
     width: 25px;
     position: relative;
-`
-const Dot = styled.span `
+`;
+const Dot = styled.span`
     height: 4px;
     width: 4px;
     border-radius: 50%;
@@ -38,17 +38,13 @@ const Dot = styled.span `
     ${DotsWrapper}: hover & {
         background: ${props => props.up ? "#21ce99" : "#f45531"};
     }
-`
+`;
 
-const Padlock = styled.img `
+const Padlock = styled.img`
     max-width: 100%;
     max-height: 100%;
     object-fit: contain;
-`
-
-
-//props.ticker //props.open
-//is there a better way than just passing this.props.open to everything? redux
+`;
 
 class ThreeDots extends React.Component {
   constructor(props) {
@@ -57,35 +53,35 @@ class ThreeDots extends React.Component {
   render() {
     return (
       <div>
-      <Dot open={this.props.open} up={this.props.up}></Dot>
-      <Dot open={this.props.open} up={this.props.up}></Dot>
-      <Dot open={this.props.open} up={this.props.up}></Dot>
+        <Dot open={this.props.open} up={this.props.up}></Dot>
+        <Dot open={this.props.open} up={this.props.up}></Dot>
+        <Dot open={this.props.open} up={this.props.up}></Dot>
       </div>
     )
   }
 }
 
 class TopBar extends React.Component {
-    constructor(props) {
-        super(props)
-    }
-    render() {
-        const padlockColor = this.props.open ? '/images/padlock.png' : '/images/padlock-white.png'
-        const dotsRender = this.props.error ?  <Padlock src={padlockColor}/> : <ThreeDots open={this.props.open} up={this.props.up}/>
-        const menu = this.props.menu  && !this.props.error? <Menu open={this.props.open} up={this.props.up} /> : null;
-        return (
-            <TopBarWrapper open={this.props.open}>
-                <Buy open={this.props.open}>Buy {this.props.ticker}</Buy>
-                <DotsWrapper error={this.props.error} open={this.props.open} onClick={() => {
-                  this.props.error ? null : this.props.clickHandler({menu: !this.props.menu})}
-                  }>
-                  {dotsRender}
-                  {menu}
-                </DotsWrapper>
-            </TopBarWrapper>
-        )   
-    }
+  constructor(props) {
+    super(props)
+  }
+  render() {
+    const padlockColor = this.props.open ? '/images/padlock.png' : '/images/padlock-white.png'
+    const dotsRender = this.props.error ? <Padlock src={padlockColor} /> : <ThreeDots open={this.props.open} up={this.props.up} />
+    const menu = this.props.menu && !this.props.error ? <Menu open={this.props.open} up={this.props.up} /> : null;
+    return (
+      <TopBarWrapper open={this.props.open}>
+        <Buy open={this.props.open}>Buy {this.props.ticker}</Buy>
+        <DotsWrapper error={this.props.error} open={this.props.open} onClick={() => {
+          this.props.error ? null : this.props.clickHandler({ menu: !this.props.menu })
+        }
+        }>
+          {dotsRender}
+          {menu}
+        </DotsWrapper>
+      </TopBarWrapper>
+    )
+  }
 }
-//put menu
-export default TopBar;
 
+export default TopBar;
