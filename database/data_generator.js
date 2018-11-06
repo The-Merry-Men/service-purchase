@@ -6,7 +6,7 @@ const connection = mysql.createConnection({
   host: 'localhost',
   user: 'root',
   password: 'root',
-  database: 'fec_robinhood'
+  database: 'fec_robinhood',
 });
 
 connection.connect(() => {
@@ -43,4 +43,3 @@ connection.query(queryStringUser, [1, 10000, 1]);
 
 generateData();
 connection.end();
-

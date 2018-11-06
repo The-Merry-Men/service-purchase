@@ -1,0 +1,161 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`bottom bar renders correctly for state: 0and 0 1`] = `
+<div
+  className="sc-bwzfXH fTajkR"
+  open="0"
+>
+  <div
+    className="sc-bxivhb bELKrm"
+  >
+    <div
+      className="sc-bdVaJa hETcTg"
+      open="0"
+    >
+      $
+      59.00
+      Buying Power Available
+    </div>
+  </div>
+</div>
+`;
+
+exports[`bottom bar renders correctly for state: 0and 1 1`] = `
+<div
+  className="sc-bwzfXH fTajkR"
+  open="0"
+>
+  <div
+    className="sc-bxivhb bELKrm"
+  >
+    <div
+      className="sc-bdVaJa hETcTg"
+      open="0"
+    >
+      $
+      59.00
+      Buying Power Available
+    </div>
+  </div>
+</div>
+`;
+
+exports[`bottom bar renders correctly for state: 1and 0 1`] = `
+<div
+  className="sc-bwzfXH fTajkR"
+  open="1"
+>
+  <div
+    className="sc-bxivhb bELKrm"
+  >
+    <div
+      className="sc-bdVaJa hETcTg"
+      open="1"
+    >
+      $
+      59.00
+      Buying Power Available
+    </div>
+  </div>
+</div>
+`;
+
+exports[`bottom bar renders correctly for state: 1and 1 1`] = `
+<div
+  className="sc-bwzfXH fTajkR"
+  open="1"
+>
+  <div
+    className="sc-bxivhb bELKrm"
+  >
+    <div
+      className="sc-bdVaJa hETcTg"
+      open="1"
+    >
+      $
+      59.00
+      Buying Power Available
+    </div>
+  </div>
+</div>
+`;
+
+exports[`bottom bar renders correctly for state: true and 0 1`] = `
+<div
+  className="sc-bwzfXH fTajkR"
+  open="0"
+>
+  <div
+    className="sc-bxivhb bELKrm"
+  >
+    <div
+      className="sc-bdVaJa hETcTg"
+      open="0"
+    >
+      $
+      59.00
+      Buying Power Available
+    </div>
+  </div>
+</div>
+`;
+
+exports[`bottom bar renders correctly for state: true and 0 2`] = `
+<div
+  className="sc-bwzfXH fTajkR"
+  open="1"
+>
+  <div
+    className="sc-bxivhb bELKrm"
+  >
+    <div
+      className="sc-bdVaJa hETcTg"
+      open="1"
+    >
+      $
+      59.00
+      Buying Power Available
+    </div>
+  </div>
+</div>
+`;
+
+exports[`bottom bar renders correctly for state: true and 1 1`] = `
+<div
+  className="sc-bwzfXH fTajkR"
+  open="0"
+>
+  <div
+    className="sc-bxivhb bELKrm"
+  >
+    <div
+      className="sc-bdVaJa hETcTg"
+      open="0"
+    >
+      $
+      59.00
+      Buying Power Available
+    </div>
+  </div>
+</div>
+`;
+
+exports[`bottom bar renders correctly for state: true and 1 2`] = `
+<div
+  className="sc-bwzfXH fTajkR"
+  open="1"
+>
+  <div
+    className="sc-bxivhb bELKrm"
+  >
+    <div
+      className="sc-bdVaJa hETcTg"
+      open="1"
+    >
+      $
+      59.00
+      Buying Power Available
+    </div>
+  </div>
+</div>
+`;
