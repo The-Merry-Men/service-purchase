@@ -12,15 +12,17 @@ const MenuWrapper = styled.div`
 
 class Menu extends React.Component {
   constructor(props) {
-    super(props)
+    super(props);
   }
+
   render() {
+    const { open, up } = this.props;
     return (
-      <MenuWrapper onClick={(e) => { e.stopPropagation() }}>
-        <MenuTopBar open={this.props.open} up={this.props.up} />
-        <MenuBottomBar open={this.props.open} up={this.props.up} />
+      <MenuWrapper onClick={(e) => { e.stopPropagation(); }}>
+        <MenuTopBar open={open} up={up} />
+        <MenuBottomBar open={open} up={up} />
       </MenuWrapper>
-    )
+    );
   }
 }
 
