@@ -6,20 +6,20 @@ const TopBarWrapper = styled.div`
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    background: ${props => props.open ? "white" : "#1b1b1d"}
-    border: 1px solid ${props => props.open ? "rgb(224, 224, 224)" : "black"};
-    box-shadow: 1px 1px 10px 1px ${props => props.open ? "whitesmoke" : "black"};
+    background: ${props => (props.open ? 'white' : '#1b1b1d')}
+    border: 1px solid ${props => (props.open ? 'rgb(224, 224, 224)' : 'black')};
+    box-shadow: 1px 1px 10px 1px ${props => (props.open ? 'whitesmoke' : 'black')};
     height: 47px;
     width: 228px;
     align-items: center;
-    font-family: "DIN Pro", -apple-system, BlinkMacSystemFont, sans-serif;
+    font-family: 'DIN Pro', -apple-system, BlinkMacSystemFont, sans-serif;
     font-weight: 600;
 `;
 const Buy = styled.div`
     margin-left: 12px;
     margin-top: 4px;
     font-size: 16px;
-    color : ${props => props.open ? "black" : "white"};
+    color : ${props => (props.open ? 'black' : 'white')};
 `;
 const DotsWrapper = styled.div`
     margin-right: 10px;
@@ -31,12 +31,12 @@ const Dot = styled.span`
     height: 4px;
     width: 4px;
     border-radius: 50%;
-    background: ${props => props.open ? "black" : "white"};
+    background: ${props => (props.open ? 'black' : 'white')};
     display: inline-block;
     margin-right: 3px;
     margin-bottom: 3px;
     ${DotsWrapper}: hover & {
-        background: ${props => props.up ? "#21ce99" : "#f45531"};
+        background: ${props => (props.up ? '#21ce99' : '#f45531')};
     }
 `;
 
@@ -48,39 +48,45 @@ const Padlock = styled.img`
 
 class ThreeDots extends React.Component {
   constructor(props) {
-    super(props)
+    super(props);
   }
+
   render() {
+    const { open, up } = this.props;
     return (
       <div>
-        <Dot open={this.props.open} up={this.props.up}></Dot>
-        <Dot open={this.props.open} up={this.props.up}></Dot>
-        <Dot open={this.props.open} up={this.props.up}></Dot>
+        <Dot open={open} up={up} />
+        <Dot open={open} up={up} />
+        <Dot open={open} up={up} />
       </div>
-    )
+    );
   }
 }
 
 class TopBar extends React.Component {
   constructor(props) {
-    super(props)
+    super(props);
   }
+
   render() {
-    const padlockColor = this.props.open ? '/images/padlock.png' : '/images/padlock-white.png'
-    const dotsRender = this.props.error ? <Padlock src={padlockColor} /> : <ThreeDots open={this.props.open} up={this.props.up} />
-    const menu = this.props.menu && !this.props.error ? <Menu open={this.props.open} up={this.props.up} /> : null;
+    const {
+      ticker, up, open, error, menu, clickHandler,
+    } = this.props;
+    const padlockColor = open ? '/images/padlock.png' : '/images/padlock-white.png';
+    const dotsRender = error ? <Padlock src={padlockColor} /> : <ThreeDots open={open} up={up} />;
+    const menuComponent = menu && !error ? <Menu open={open} up={up} /> : null;
     return (
-      <TopBarWrapper open={this.props.open}>
-        <Buy open={this.props.open}>Buy {this.props.ticker}</Buy>
-        <DotsWrapper error={this.props.error} open={this.props.open} onClick={() => {
-          this.props.error ? null : this.props.clickHandler({ menu: !this.props.menu })
-        }
-        }>
+      <TopBarWrapper open={open}>
+        <Buy open={open}>Buy {ticker}</Buy>
+        <DotsWrapper error={error} open={open} onClick={() => {
+          error ? null : clickHandler({ menu: !menu })
+        }}
+        >
           {dotsRender}
-          {menu}
+          {menuComponent}
         </DotsWrapper>
       </TopBarWrapper>
-    )
+    );
   }
 }
 
