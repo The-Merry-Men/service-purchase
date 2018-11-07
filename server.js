@@ -1,12 +1,14 @@
 
 // CONNECT TO DATABASE
 const mysql = require('mysql');
+const cors = require('cors');
+
 
 const connection = mysql.createConnection({
   host: 'localhost',
   user: 'root',
   password: 'root',
-  database: 'fec_robinhood'
+  database: 'fec_robinhood',
 });
 
 connection.connect(() => {
@@ -18,6 +20,7 @@ const express = require('express');
 
 const port = 3001;
 const app = express();
+app.use(cors());
 app.listen(port, () => {
   console.log('server up and running');
 });
@@ -64,3 +67,4 @@ app.post('/users/:id/:amount', (req) => {
 
 app.use('/client', express.static('client'));
 app.use(express.static('public'));
+

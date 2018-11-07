@@ -22,6 +22,7 @@ class App extends React.Component {
   }
 
   componentDidMount() {
+    console.log('component did mount is hit', __dirname);
     const randomId = Math.ceil(Math.random() * 99);
     fetch(`/companies/${randomId}`, {
       method: 'GET',
