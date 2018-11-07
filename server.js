@@ -25,10 +25,10 @@ app.listen(port, () => {
 // get company name from companies table given id
 app.get('/companies/:id', (req, res) => {
   const idParam = req.params.id;
-  const queryString = 'SELECT company_name, ticker_symbol from companies WHERE id= ?';
+  const queryString = 'SELECT ticker_symbol from companies WHERE id= ?';
   connection.query(queryString, idParam, (err, data) => {
     if (err) {
-      return console.log('error getting company name from companies database');
+      console.log('error getting company name from companies database');
     }
     res.send(data[0]);
   });
@@ -40,23 +40,25 @@ app.get('/users/:id', (req, res) => {
   const queryStringBalance = 'SELECT balance, authorized_user from users WHERE id= ?';
   connection.query(queryStringBalance, idParam, (err, data) => {
     if (err) {
-      return console.log('error getting account balance from companies database');
+      console.log('error getting account balance from companies database');
+    } else {
+      console.log('data sent from get req', data[0]);
+      res.send(data[0]);
     }
-    console.log('data sent from get req', data[0])
-    res.send(data[0]);
   });
 });
 
 // subtract amount from balance of user table give id
-app.post('/users/:id/:amount', (req, res) => {
+app.post('/users/:id/:amount', (req) => {
   const idParam = req.params.id;
   const amountParam = req.params.amount;
   const queryStringAmount = 'UPDATE users SET balance = balance - ? WHERE id = ?';
   connection.query(queryStringAmount, [amountParam, idParam], (err) => {
     if (err) {
-      return console.log('error updating user balance');
+      console.log('error updating user balance');
+    } else {
+      console.log('successfully updated user balance');
     }
-    console.log('successfully updated user balance');
   });
 });
 
