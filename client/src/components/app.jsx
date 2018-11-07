@@ -23,7 +23,7 @@ class App extends React.Component {
 
   componentDidMount() {
     const randomId = Math.ceil(Math.random() * 99);
-    fetch(`http://localhost:3001/companies/${randomId}`, {
+    fetch(`/companies/${randomId}`, {
       method: 'GET',
     })
       .then(res => res.json())
