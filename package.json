@@ -6,7 +6,7 @@
   "scripts": {
     "react-dev": "webpack -d --watch",
     "start": "nodemon server.js --watch",
-    "init_schema": "mysql -u root -p < ./database/puchase.sql",
+    "init_schema": "mysql -u root -p < ./database/purchase.sql",
     "seed": "node database/data_generator.js",
     "test": "jest"
   },

@@ -5,9 +5,9 @@ const cors = require('cors');
 
 
 const connection = mysql.createConnection({
-  host: 'localhost',
+  host: 'service-purchase2.cb172hej5beh.us-west-1.rds.amazonaws.com',
   user: 'root',
-  password: 'root',
+  password: 'rootpassword',
   database: 'fec_robinhood',
 });
 
@@ -26,7 +26,7 @@ app.listen(port, () => {
 });
 
 // get company name from companies table given id
-app.get('/companies/:id', (req, res) => {
+app.get('/purchase/companies/:id', (req, res) => {
   const idParam = req.params.id;
   const queryString = 'SELECT ticker_symbol from companies WHERE id= ?';
   connection.query(queryString, idParam, (err, data) => {
@@ -37,34 +37,5 @@ app.get('/companies/:id', (req, res) => {
   });
 });
 
-// get balance from user table given id
-app.get('/users/:id', (req, res) => {
-  const idParam = req.params.id;
-  const queryStringBalance = 'SELECT balance, authorized_user from users WHERE id= ?';
-  connection.query(queryStringBalance, idParam, (err, data) => {
-    if (err) {
-      console.log('error getting account balance from companies database');
-    } else {
-      console.log('data sent from get req', data[0]);
-      res.send(data[0]);
-    }
-  });
-});
-
-// subtract amount from balance of user table give id
-app.post('/users/:id/:amount', (req) => {
-  const idParam = req.params.id;
-  const amountParam = req.params.amount;
-  const queryStringAmount = 'UPDATE users SET balance = balance - ? WHERE id = ?';
-  connection.query(queryStringAmount, [amountParam, idParam], (err) => {
-    if (err) {
-      console.log('error updating user balance');
-    } else {
-      console.log('successfully updated user balance');
-    }
-  });
-});
-
 app.use('/client', express.static('client'));
 app.use(express.static('public'));
-

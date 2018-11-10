@@ -3,9 +3,9 @@ const mysql = require('mysql');
 const faker = require('faker');
 
 const connection = mysql.createConnection({
-  host: 'localhost',
+  host: 'service-purchase2.cb172hej5beh.us-west-1.rds.amazonaws.com',
   user: 'root',
-  password: 'root',
+  password: 'rootpassword',
   database: 'fec_robinhood',
 });
 
