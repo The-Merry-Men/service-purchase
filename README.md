@@ -1,1 +1,1 @@
-# purchase
+# purchase bar component
